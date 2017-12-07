@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors linteng (875482941@qq.com)
+ * @date    2017-11-30 21:12:41
+ * @version $Id$
+ */
+html,body{width: 100%;height: 100%;overflow: hidden;}
+
+.do-mod-login{position: relative;height: 100%;font-family: 'raleway';}
+.do-mod-login .title{position: absolute;top: 30%;left: 50%;width: 400px;height: 50px;margin-left: -200px;text-align: center;line-height: 50px;z-index: 2;font-size: 60px;color: #fff;}
+.do-mod-login > section{position:relative;float: left;width:100%;height: 100%;transition: .4s;background: -webkit-linear-gradient(top, #598c86 0%,#caba7a 100%)}
+
+.do-mod-login .logo{position: absolute;width: 150px;height: 150px;border-radius: 100%;left: 50%;margin-left: -75px;top: 20%;box-shadow: 0 0 2px 2px #60897A;z-index: 99;}
+.do-mod-login .input{position: relative;height: 50px;color: #fff;margin: 15px 30px;}
+.do-mod-login .input i{position: absolute;height: 100%;line-height: 50px;font-size: 25px;margin-right: 10px;}
+.do-mod-login .sign-in{float: left;position: relative;width: 400px;left: 50%;margin-left: -200px;z-index: 100;top: 40%;transition: .4s;opacity: 0;visibility: hidden;text-align: right;}
+.do-mod-login .sign-in p{color: #ddd;text-align: center;}
+.do-mod-login .txt{border: 0;width: 80%;height: 50px;padding-left: 10px;margin: 0 30px 0 50px;line-height: 50px;background: none;border-bottom: 1px solid #e4ca66;color: #fff;font-size: 14px;}
+.do-mod-login .txt::-webkit-input-placeholder{color: #ddd;}
+.do-mod-login .txt.w-30{width: 30%}
+.do-mod-login .txt.w-40{width: 40%}
+.do-mod-login .txt.w-45{width: 45%}
+
+.do-mod-login .msg{position: absolute;top: -15px;width: 100%;display: block;text-align: center;color: #f30;transition: .4s;transform: scaleY(0);}
+.do-mod-login .forget{width: 80px;text-align: center;padding: 15px 0;}
+.do-mod-login .submit{display: block;height: 40px;background: rgb(59, 113, 95);color: #fff;text-align: center;line-height: 40px;margin: 20px 40px;border-radius: 3px;}
+.do-mod-login .submit:last-child{background: #8c8a59}
+.do-mod-login .a{display: inline-block;padding-left: 5px;color: #fff;}
+
+.do-mod-login .sign-up{float: left;position: absolute;width: 400px;left: 50%;margin-left: -200px;top: 38%;z-index: 100;opacity: 0;visibility: hidden;transition: .4s;}
+.do-mod-login .getCode{position: absolute;float: left;right: 18px;top: 0;height: 100%;line-height: 50px;color: #fff;padding: 0 5px;}
+.do-mod-login .code{display: inline-block;vertical-align: middle;}
+.do-mod-login .code:hover{cursor: pointer;}
+
+.do-mod-login .show{opacity: 1;visibility: visible;transform: scale(1);}
