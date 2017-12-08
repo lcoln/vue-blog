@@ -68,14 +68,13 @@ var common = {
             request.post(path)
                 .send(para || {})
                 .end((err, res) => {
-                    console.log(res);
-                    if(['502','500'].includes(res.status))
-                        return {err: err + ''}
+                    if(/^5/.test(res.status + ''))
+                        resolve({err: err + ''})
 
                     var json = JSON.parse(res.text)
 
-                    if(json.code != 200 && json.code != 201)
-                        return {msg: json.msg}
+                    /*if(json.code != 200 && json.code != 201)
+                        resolve({errMsg: json.msg})*/
 
                     resolve(json)
                 })

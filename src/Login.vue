@@ -6,7 +6,7 @@
               <span class="msg" :class="{show: msg}">{{msg}}</span>
               <section class="input">
                   <i class="iconfont">&#xe609;</i>
-                  <input type="text" class="txt" placeholder="邮箱" v-model="form.account" />
+                  <input type="text" class="txt" placeholder="邮箱" v-model="form.email" />
               </section>
               <section class="input">
                   <i class="iconfont">&#xe604;</i>
@@ -19,7 +19,7 @@
           <div class="sign-up" :class="{show: signUp}">
               <span class="msg" :class="{show: msg}">{{msg}}</span>
               <section class="input">
-                  <i class="iconfont">&#xe725;</i>
+                  <i class="iconfont">&#xe70f;</i>
                   <input type="text" class="txt" placeholder="邮箱" v-model="form.email" />
               </section>
               <section class="input">
@@ -37,7 +37,7 @@
               <section class="input">
                   <i class="iconfont">&#xe636;</i>
                   <input type="text" class="txt w-30" placeholder="验证码" v-model="form.code" />
-                  <img class="code" @click="changeCode" src="http://blog.cncoders.me/user/captcha" />
+                  <img class="code" @click="changeCode" src="https://api.cncoders.me/user/captcha" />
                   <!-- <a href="javascript:;" class="getCode" @click="getCode">获取验证码</a> -->
               </section>
               <a href="javascript:;" class="submit" @click="submit">注册</a>
@@ -63,7 +63,6 @@ export default {
       return {
           signUp: false,
           form: {
-              account: '',
               email: '',
               code: '',
               password: '',
@@ -83,19 +82,27 @@ export default {
     submit: async function(){
       let _this = this
       let form = this.form
-      if(this.signUp){
-        if(!reg.email.test(form.email)){
-          return this.$layer.alert('邮箱格式不正确', {title: '提示', icon: 2})
-        }
-      }else{
-        if(!reg.passwd.test(form.password)){
-          return this.$layer.alert('密码为6-18位包含数字与字母的字符', {title: '提示', icon: 2})
-        }
+      let json = {}
 
+      if(!reg.email.test(form.email)){
+        return this.$layer.alert('邮箱格式不正确', {title: '提示', icon: 2})
+      }
+      if(!reg.passwd.test(form.password)){
+        return this.$layer.alert('密码为6-18位包含数字与字母的字符', {title: '提示', icon: 2})
       }
 
-      let json = await common.post(baseUrl + 'user/login', form)
-      console.log(json);
+      if(this.signUp && this.password !== this.passwordConfirm){
+        return this.$layer.alert('两次输入密码不一致', {title: '提示', icon: 2})
+      }
+
+      if(this.signUp){
+        json = await common.post(baseUrl + 'user/register', form)
+      }else{
+        json = await common.post(baseUrl + 'user/login', form)
+      }
+      if(json && !json.err){
+        return this.$layer.alert(json.msg, {icon: 2})
+      }
 
       /*this.$layer.confirm(111, {
         title: 'confirm',
@@ -112,6 +119,9 @@ export default {
       })*/
     },
     toggle: function(){
+      for(let it of Object.keys(this.form)){
+        this.form[it] = ''
+      }
       this.signUp = !this.signUp
     },
     changeCode: function(){
